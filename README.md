@@ -1,7 +1,7 @@
 # Expense Tracker Application
 
 # Exspend
-
+![Project Screenshot](https://github.com/DineshPabboju/Exspend/blob/main/frontend/public/demo.png)
 A full-stack expense tracker application with a **FastAPI** backend, **React** (Vite) frontend, and a **SQLite** database. Exspend lets users register, log in, track expenses against a monthly budget, and view a summary dashboard of their spending.
 
 ## Features
