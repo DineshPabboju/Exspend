@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
-SQLALCHEMY_DATABASE_URL = "sqlite:///./expenses.db"
+from .config import settings
+SQLALCHEMY_DATABASE_URL = f"{settings.DATABASE_URL}"
 
 # connect_args={"check_same_thread": False} is required only for SQLite
 engine = create_engine(
