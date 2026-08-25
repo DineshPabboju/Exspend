@@ -2,9 +2,7 @@ from sqlalchemy import desc
 from sqlalchemy.orm import Session
 from datetime import date, datetime
 from typing import Optional, List
-import models
-import schemas
-import backend.app.auth as auth
+from . import auth, models, schemas
 
 # User operations
 def get_user_by_email(db: Session, email: str):

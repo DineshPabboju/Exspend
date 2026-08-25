@@ -4,11 +4,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import date, timedelta
 from typing import List, Optional
-import models
-import schemas
-import backend.app.crud as crud
-import backend.app.auth as auth
-from backend.app.database import engine, get_db
+from . import auth, crud, models, schemas
+from .database import engine, get_db
 
 # Create database tables
 models.Base.metadata.create_all(bind=engine)
@@ -27,6 +24,7 @@ origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -56,7 +54,7 @@ def login_for_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    access_token_expires = timedelta(minutes=auth.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=float(auth.ACCESS_TOKEN_EXPIRE_MINUTES))
     access_token = auth.create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
