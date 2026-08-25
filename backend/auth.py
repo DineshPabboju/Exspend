@@ -8,10 +8,11 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 import models
+from .config import settings
 
-SECRET_KEY = "SUPER_SECRET_KEY_FOR_EXPENSE_TRACKER_APP"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 1440  # 24 hours
+SECRET_KEY = f"{settings.SECRET_KEY}"
+ALGORITHM = f"{settings.ALGORITHM}"
+ACCESS_TOKEN_EXPIRE_MINUTES = f"{settings.ACCESS_TOKEN_EXPIRE_MINUTES}"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 
