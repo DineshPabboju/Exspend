@@ -14,6 +14,8 @@ app = FastAPI(title="Expense Tracker API", version="1.0.0")
 
 # Setup CORS middleware
 origins = [
+    "https://exspend-jprs.onrender.com",
+    "https://exspend.onrender.com",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     # Allow any localhost port for development flexibility
