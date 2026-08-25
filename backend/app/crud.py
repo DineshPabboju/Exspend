@@ -4,7 +4,7 @@ from datetime import date, datetime
 from typing import Optional, List
 import models
 import schemas
-import auth
+import backend.app.auth as auth
 
 # User operations
 def get_user_by_email(db: Session, email: str):

@@ -6,9 +6,9 @@ from datetime import date, timedelta
 from typing import List, Optional
 import models
 import schemas
-import crud
-import auth
-from database import engine, get_db
+import backend.app.crud as crud
+import backend.app.auth as auth
+from backend.app.database import engine, get_db
 
 # Create database tables
 models.Base.metadata.create_all(bind=engine)
