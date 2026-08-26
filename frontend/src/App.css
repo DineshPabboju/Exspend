@@ -126,6 +126,10 @@
 }
 
 .auth-toggle-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
   color: var(--primary-light);
   font-weight: 600;
   text-decoration: none;

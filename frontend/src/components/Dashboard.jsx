@@ -75,11 +75,6 @@ export default function Dashboard({ onLogout }) {
     fetchSummary();
   }, []);
 
-  // Fetch Expenses on Filter changes
-  useEffect(() => {
-    fetchExpenses();
-  }, [fetchExpenses]);
-
   const showToast = (message, type = "success") => {
     setToast({ message, type });
 
@@ -119,12 +114,14 @@ export default function Dashboard({ onLogout }) {
       const expenseList = await api.getExpenses(filters);
       setExpenses(expenseList);
     } catch (err) {
-      showToast(
-        err.message || "Failed to fetch expenses list",
-        "error"
-      );
+      showToast(err.message || "Failed to fetch expenses list", "error");
     }
   }, [filters]);
+
+  // Fetch Expenses on Filter changes
+  useEffect(() => {
+    fetchExpenses();
+  }, [fetchExpenses]);
 
   // Create/Edit Expense
   const handleExpenseSubmit = async (e) => {
@@ -878,7 +875,7 @@ const renderDonutChart = () => {
                   flexDirection: "column",
                   gap: "4px"
                 }}
-              >
+            >
 
                 <span
                   style={{
@@ -914,7 +911,7 @@ const renderDonutChart = () => {
                   flexDirection: "column",
                   gap: "4px"
                 }}
-              >
+            >
 
                 <span
                   style={{

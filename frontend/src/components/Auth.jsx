@@ -132,9 +132,9 @@ export default function Auth({ onAuthSuccess }) {
 
         <div className="auth-toggle">
           {isLogin ? "New to Exspend? " : "Already have an account? "}
-          <span className="auth-toggle-link" onClick={toggleMode}>
+          <button type="button" className="auth-toggle-link" onClick={toggleMode}>
             {isLogin ? "Create an account" : "Sign in here"}
-          </span>
+          </button>
         </div>
       </div>
     </div>
