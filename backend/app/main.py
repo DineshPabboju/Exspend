@@ -3,8 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import date, timedelta
+from pathlib import Path
 from typing import List, Optional
 from . import auth, crud, models, schemas
+from .config import settings
 from .database import engine, get_db
 
 # Create database tables
@@ -12,8 +14,16 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Expense Tracker API", version="1.0.0")
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+frontend_directory = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+if frontend_directory.is_dir():
+    app.frontend("/", directory=str(frontend_directory))
 # Setup CORS middleware
 origins = [
+    settings.FRONTEND_URL,
     "https://exspend-jprs.onrender.com",
     "https://exspend.onrender.com",
     "https://exspend-seven.vercel.app",

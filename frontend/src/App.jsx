@@ -16,7 +16,7 @@ export default function App() {
           // Verify token works by requesting current user
           await api.getCurrentUser();
           setIsAuthenticated(true);
-        } catch (err) {
+        } catch {
           // Token expired or invalid
           api.logout();
           setIsAuthenticated(false);

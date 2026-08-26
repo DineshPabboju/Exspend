@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.API_BASE_URL || "http://localhost:8000/api";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api";
 
 const api = {
   // Helper to handle response and errors
@@ -15,19 +15,19 @@ const api = {
       try {
         const errData = await response.json();
         errorMsg = errData.detail || errData.message || errorMsg;
-      } catch (e) {
+      } catch {
         // ignore parsing errors
       }
       throw new Error(errorMsg);
     }
     
-    if (response.status === 24) { // No Content
+    if (response.status === 204) { // No Content
       return null;
     }
     
     try {
       return await response.json();
-    } catch (e) {
+    } catch {
       return null;
     }
   },

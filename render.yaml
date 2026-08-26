@@ -8,19 +8,15 @@ services:
     startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11
+        value: 3.12
       - key: SECRET_KEY
-        value: your-secret-key-change-this
+        generateValue: true
       - key: ALGORITHM
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: 30
-
-  # Frontend Service
-  - type: static site
-    name: expense-tracker-frontend
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
-    envVars:
-      - key: VITE_API_BASE_URL
-        value: https://expense-tracker-backend.onrender.com/api
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+    healthCheckPath: /health

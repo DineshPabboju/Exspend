@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Plus,
   Edit2,
@@ -78,7 +78,7 @@ export default function Dashboard({ onLogout }) {
   // Fetch Expenses on Filter changes
   useEffect(() => {
     fetchExpenses();
-  }, [filters]);
+  }, [fetchExpenses]);
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -114,7 +114,7 @@ export default function Dashboard({ onLogout }) {
     }
   };
 
-  const fetchExpenses = async () => {
+  const fetchExpenses = useCallback(async () => {
     try {
       const expenseList = await api.getExpenses(filters);
       setExpenses(expenseList);
@@ -124,7 +124,7 @@ export default function Dashboard({ onLogout }) {
         "error"
       );
     }
-  };
+  }, [filters]);
 
   // Create/Edit Expense
   const handleExpenseSubmit = async (e) => {
