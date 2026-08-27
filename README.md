@@ -5,7 +5,7 @@
 A full-stack expense tracker application with a **FastAPI** backend, **React** (Vite) frontend, and a **SQLite** database. Exspend lets users register, log in, track expenses against a monthly budget, and view a summary dashboard of their spending.
 
 # Live Demo
-![live demo](https://exspend-seven.vercel.app/)
+- [Live Demo](https://exspend-seven.vercel.app/)
 
 ## Features
 
